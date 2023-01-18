@@ -1,8 +1,8 @@
 let config = {
   host    : 'ov-research-4.uwaterloo.ca',
-  user    : '',
-  password: '',
-  database: ''
+  user    : 'Jkachura',
+  password: 'test',
+  database: '12345'
 };
  
 module.exports = config;
