@@ -170,3 +170,5 @@ Home.propTypes = {
 };
 
 export default withStyles(styles)(Home);
+
+// Random edit made by Matthew
