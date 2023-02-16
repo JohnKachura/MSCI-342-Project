@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import history from "../Navigation/history";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -6,7 +7,6 @@ import { MuiThemeProvider, createTheme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
-import { makeStyles } from "@material-ui/core/styles"; //Typography import styles
 
 //Selects imports
 import InputLabel from "@material-ui/core/InputLabel";
@@ -29,11 +29,27 @@ import FormLabel from "@material-ui/core/FormLabel";
 import { ToastContainer, toast } from "material-react-toastify";
 import "material-react-toastify/dist/ReactToastify.css";
 
+//Header app bar shit
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from '@mui/material/IconButton';
+import LiveTvIcon from '@mui/icons-material/LiveTv';
+import Stack from '@mui/material/Stack';
+import Divider from '@mui/material/Divider';
+import SearchIcon from '@mui/icons-material/Search';
+import ReviewsIcon from '@mui/icons-material/Reviews';
+import ImageSearchIcon from '@mui/icons-material/ImageSearch';
+import AddIcon from '@mui/icons-material/Add';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import HomeIcon from '@mui/icons-material/Home';
+import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
+
+
 //Dev mode
-//const serverURL = ""; //enable for dev mode
+const serverURL = ""; //enable for dev mode
 
 //Deployment mode instructions
-const serverURL = "http://ec2-18-216-101-119.us-east-2.compute.amazonaws.com:3021"; //enable for deployed mode; Change PORT to the port number given to you;
+//const serverURL = "http://ec2-18-216-101-119.us-east-2.compute.amazonaws.com:3021"; //enable for deployed mode; Change PORT to the port number given to you;
 //To find your port number:
 //ssh to ov-research-4.uwaterloo.ca and run the following command:
 //env | grep "PORT"
@@ -235,7 +251,8 @@ const Review = (props) => {
     console.log("Movies: ", body);
     return body;
   }
-  
+
+  // const movieName = movies.filter((movie) => movie.id === movie)
 
   const notify = () => toast.error("Please select a movie");
   const notify2 = () => toast.error("Please enter your review title");
@@ -283,8 +300,66 @@ const Review = (props) => {
     }
   };
 
+
+  const Search = (event) => {
+    console.log("Search Button is clicked");
+    history.push('/Search')
+  };
+
+  const Reviews = (event) => {
+    console.log("Reviews Button is clicked");
+    history.push('/Reviews')
+  };
+
+  const myPage = (event) => {
+    console.log("myPage Button is clicked");
+    history.push('/myPage')
+  };
+
+  const land = (event) => {
+    console.log("land Button is clicked");
+    history.push('/')
+  };
+
   return (
     <MuiThemeProvider theme={theme}>
+
+    <Box sx={{ flexGrow: 2 }} >
+      <AppBar position="static" sx={{ bgcolor: "purple" }}>
+        <Toolbar>
+          <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+            RoadRunner &nbsp; <DirectionsRunIcon></DirectionsRunIcon>
+          </Typography>
+          <p class="tab">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          {/* <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+            onClick={land}
+          >
+            <LiveTvIcon />
+          </IconButton> */}
+
+          <Stack direction="row"
+                 divider={<Divider orientation="vertical" flexItem />}
+                 spacing={2}>
+
+          <Button  color="inherit" onClick={Search}>
+              Home &nbsp;&nbsp; <HomeIcon></HomeIcon>
+              </Button>
+          <Button  color="inherit" onClick={Reviews}>
+              Profile &nbsp;&nbsp; <AccountBoxIcon></AccountBoxIcon>
+            </Button>
+          <Button  color="inherit" onClick={myPage}>
+              Add &nbsp;&nbsp;<AddIcon></AddIcon>
+              </Button>
+          </Stack>
+        </Toolbar>
+      </AppBar>
+      </Box>
+
       <CssBaseline />
       <Grid
         container
@@ -328,7 +403,7 @@ const Review = (props) => {
             Submit
           </Button>
           <ToastContainer
-            position="top-left"
+            position="top-right"
             autoClose={3000}
             hideProgressBar
             newestOnTop={false}
