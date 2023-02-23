@@ -63,8 +63,7 @@ const AddRun= () => {
     {name: "Humid", id: 4},
     {name: "Snowy", id: 5},
     {name: "Icey", id: 6},
-    {name: "Snowy", id: 7},
-    {name: "Windy", id: 8}
+    {name: "Windy", id: 7}
   ];
 
   const [selectedWeather, setSelectedWeather] = React.useState("");
