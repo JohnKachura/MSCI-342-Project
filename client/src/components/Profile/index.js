@@ -629,7 +629,7 @@ const Profile = () => {
                         variant="outlined"
                         onClick={onSave} data-testID='button-name'
                         >
-                        button-name
+                        Save
                     </Button>
                 </Box>
 
