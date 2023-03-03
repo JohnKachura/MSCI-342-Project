@@ -166,7 +166,7 @@ app.post('/api/addRun', (req, res) => {
 
 		res.send({express: string});
 	});
-  connection.end();
+	connection.end();
 });
 
 // gets current profile
